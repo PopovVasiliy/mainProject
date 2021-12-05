@@ -25,7 +25,7 @@ class ClientUsers:
         self._name_user = name_user
         self._status = status
 
-    # получить список пользователей
+    # ///////получить список пользователей ///////
     @property
     def get_users(self):
         return list_of_Users
