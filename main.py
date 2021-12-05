@@ -11,6 +11,8 @@ class Status(Enum):
     offline = 1
     printing = 2
 
+# Первоначальная версия
+
 
 list_of_Users = []
 list_of_messages = []
