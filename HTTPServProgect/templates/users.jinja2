@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ name }}</title>
+</head>
+<body>
+    <p>List of users</p>
+    <table>
+        {% for user in users %}
+        <tr>
+            <td>{{ user.ServerUser.nick_user}}</td>
+            <td>{{ user.ServerUser.password_user}}</td>
+            <td>{{ user.ServerUser.name_user}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <p>List of messages</p>
+
+    <table>
+        {% for _message in queuemessages %}
+        <tr>
+            <td>{{ _message.data_message}}</td>
+            <td>{{ _message.user_recipient.ServerUser.nick_user}}</td>
+            <td>{{ _message.user_sender.ServerUser.nick_user}}</td>
+            <td>{{ _message.text_message}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+
+    <form action="/users" method="post" accept-charset="utf-8" enctype="application/x-www-form-urlencoded">
+
+    <label for="nick_user">nick_user</label>
+    <input id="nick_user" name="nick_user" type="text" value="" autofocus/>
+
+    <label for="password_user">password_user</label>
+    <input id="password_user" name="password_user" type="text" value=""/>
+
+    <label for="name_user">name_user</label>
+    <input id="name_user" name="name_user" type="text" value=""/>
+
+    <input type="submit" value="add"/>
+</form>
+</body>
+</html>
