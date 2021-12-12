@@ -5,6 +5,7 @@ from typing import Any, AsyncIterable, Dict, Iterable
 from aiohttp import web
 import aiohttp_jinja2
 import jinja2
+from ApplicationSettings import application_settings
 
 routes = web.RouteTableDef()
 
@@ -118,11 +119,6 @@ async def set_messages_api(request: web.Request) -> web.json_response():
 
 if __name__ == '__main__':
 
-    settings = {
-        'host': 'localhost',
-        'port': 8080
-    }
-
     app = web.Application()
     user_storage = DatabaseServerUsersStorage(Path('server_users_base.db'))
     app['UserStorage'] = user_storage
@@ -133,4 +129,4 @@ if __name__ == '__main__':
     templates_directory = Path(__file__).parent.joinpath('templates')
     aiohttp_jinja2.setup(app, loader=jinja2.FileSystemLoader(str(templates_directory)))
     app.add_routes(routes)
-    web.run_app(app, host=settings['host'], port=settings['port'])
+    web.run_app(app, host=application_settings.adresshost, port=application_settings.porthost)

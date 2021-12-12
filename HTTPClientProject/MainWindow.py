@@ -59,9 +59,10 @@ class MainWindow(QMainWindow):
         dict_to_send_user = {'nick_user': str(self.__ui.nick_user.text()),
                              'password_user': str(self.__ui.password_user.text())}
         try:
-
+            self.__UserApiProvider = UserApiProvider(self.__ui.adress_server.text())
             request_to_serv = self.__UserApiProvider.autorize_user(dict_to_send_user)
             if request_to_serv.get('ErrorKode', 'Error') == 'OK':
+
                 self.__model = UserTableModel(self.__UserApiProvider, self)
                 self.__ui.list_of_users_table.setModel(self.__model)
                 self.__model.update_model()
@@ -132,3 +133,5 @@ class MainWindow(QMainWindow):
         self.__ui.list_of_users_table.setModel(None)
         self.__ui.listView.setModel(None)
         self.__ui.textEdit.clear()
+        self.__UserApiProvider = None
+
